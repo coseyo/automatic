@@ -1,19 +1,14 @@
-package auto_repay
+package main
 
-import (
-	"time"
-
-	"vas_libs/automatic"
-)
 
 // 生成需要处理的数据
 func producerOrders(job *automatic.Job, params map[string]interface{}) (err error) {
 	limit := 1000
 	offset := 0
 	sleepTime := 1 * time.Second
-	orders := []models.RepayOrder{}
+	orders := []Order{}
 	for {
-		orders, err = models.VRepayOrderModel.GetOrders(models.REPAY_ORDER_STATUS_UNCHECKED, limit, offset)
+		orders, err = GetOrders(REPAY_ORDER_STATUS_UNCHECKED, limit, offset)
 		if err != nil || len(orders) == 0 {
 			break
 		}

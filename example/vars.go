@@ -1,10 +1,5 @@
 package main
 
-
-import (
-	"github.com/coseyo/automatic"
-)
-
 const (
 	queueLockedTime = 1800
 
